@@ -46,7 +46,6 @@ async def get_user_by_id(user_id: str):
     raise HTTPException(status_code=404, detail="Пользователь не найден")
 @app.put("/users/{user_id}")
 async def update_user(user_id: str, update_data: dict):
-    # Обновляем только те поля, которые прислал пользователь
     result = users_collection.update_one(
         {"_id": ObjectId(user_id)},
         {"$set": update_data}
